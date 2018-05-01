@@ -1,6 +1,6 @@
 #!/bin/bash
 
-webhook_url='YOUR_URL_HERE'
+webhook_url='https://discordapp.com/api/webhooks/440967008981352457/Fh5Zb6YkyObnd7dxDFvev84qwmPM_51xs75pL86ZQE8k9nr6pen29GftHgatRewzfECp'
 
 json_escape () {
     printf '%s' "$1" | python -c 'import json,sys; print(json.dumps(sys.stdin.read()))'
