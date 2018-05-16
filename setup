@@ -1,4 +1,11 @@
 #!/bin/sh
 
 SCRIPT=`realpath $0`; DIRNAME=`dirname $SCRIPT`
+WD=`pwd`
+
+cd $SCRIPT/ProgressBar
+git submodule init
+git submodule update
+cd $WD
+
 sudo ln -sv $DIRNAME/disk-usage-report /etc/cron.hourly/
