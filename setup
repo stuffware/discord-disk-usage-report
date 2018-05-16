@@ -1,4 +1,4 @@
 #!/bin/sh
 
 SCRIPT=`realpath $0`; DIRNAME=`dirname $SCRIPT`
-ln -sv $DIRNAME/disk-usage-report /etc/cron.hourly/
+sudo ln -sv $DIRNAME/disk-usage-report /etc/cron.hourly/
