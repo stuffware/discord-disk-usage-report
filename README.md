@@ -16,17 +16,16 @@ When configured as described below, this script will regularly post messages to 
 1. Clone this repo on a server somewhere.
 2. Edit the top of the `disk-usage-report` script so the `webhook_url` variable contains your real Discord Webhook URL.
 3. Give the script a test run! You can just type `./disk-usage-report` at the command line.
-4. If your message showed up in Discord, you're almost done. I have written a quick `setup` script to set up cron for hourly disk usage reports, using `cron.hourly`. You can use it just by running `./setup` from the root of this repo, once, any time (before or after you make changes to the script, because it is a symbolic link, not a file copy.
+4. If your message showed up in Discord, you're almost done. I have written a quick `setup` script to set up cron for hourly disk usage reports, using `cron.hourly`. You can use it just by running `./setup` from the root of this repo, once, any time (before or after you make changes to the script, because it is a symbolic link, not a file copy).
 
-* If you want to set it up yourself instead, you will first have to set up the ProgressBar submodule (the `setup` script takes care of this for you):
+* If you used the `setup` script, you are done! If you want to set it up yourself instead, you will first have to set up the ProgressBar submodule (the `setup` script takes care of this for you):
 ```sh
 cd ProgressBar
 git submodule init
 git submodule update
 cd ..
 ```
-
-* If you used the `setup` script, you are done. If you didn't, there are a number of ways you can automate the webhook, but the simplest is to just use `cron`. You have two options for adding a `cron` job:
+Then, there are a number of ways you can automate the webhook, but the simplest is to just use `cron`. You have two options for adding a `cron` job:
    - You can configure any custom timing you like with `sudo crontab -e`, which requires you to read the manual a little bit...
    - ...or if you just want the webhook to be called hourly, daily, weekly, or monthly (etc), if your system is running a new enough version of `cron`, you can just symbolically link your script into `/etc/cron.daily/` or `/etc/cron.hourly/`, etc, if they are present on your system:
 
