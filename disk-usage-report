@@ -10,29 +10,25 @@ kb2gb() {
   echo "$1" "$2" | awk '{ foo = ($1 + $2) / 1024 / 1024 ; print foo }'
 }
 
-percentage() {
-  echo "$1" "$2" | awk '{ print ($1 / ($1 + $2)) * 100 }' 
-}
-
 # Do some free space calculations with df and awk
-dfk=`df -k /home`
+dfk=`df -k ~`
 kbused=`echo "$dfk" | awk 'NR == 2 { print $3 }'`
 kbfree=`echo "$dfk" | awk 'NR == 2 { print $4 }'`
 gbtotal=`kb2gb $kbused $kbfree`
 gbused=`kb2gb $kbused`
 gbfree=`kb2gb $kbfree`
-gbtotali=`printf "%'.f\n" $gbtotal`
-gbusedi=`printf "%'.f\n" $gbused`
+gbtotali=`printf "%.f\n" $gbtotal`
+gbusedi=`printf "%.f\n" $gbused`
 gbusedf=`printf "%'.3f\n" $gbused`
 gbfreef=`printf "%'.3f\n" $gbfree`
 percentused=`percentage $kbused $kbfree`
 percentfree=`percentage $kbfree $kbused`
+timestamp="${TZ=America/New_York date +"%r"} EST"
 
 # Make it into something readable
 read -r -d '' message << EOM
-**$gbusedf GB Used**, $gbfreef GB Remaining
-`ProgressBar $gbusedi $gbtotali "Usage"`
-\`[`TZ=America/New_York date +"%r"` EST]\`
+`ProgressBar $gbusedi $gbtotali "$gbusedf GB Used"```
+$gbfreef GB Remaining [\`$timestamp\`]
 EOM
 
 if [ $DEBUGMODE -eq 1 ]; then
