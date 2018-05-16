@@ -18,16 +18,20 @@ When configured as described below, this script will regularly post messages to 
 3. Give the script a test run! You can just type `./disk-usage-report` at the command line.
 4. If your message showed up in Discord, you're almost done. I have written a quick `setup` script to set up cron for hourly disk usage reports, using `cron.hourly`. You can use it just by running `./setup` from the root of this repo, once, any time (before or after you make changes to the script, because it is a symbolic link, not a file copy).
 
-* If you used the `setup` script, you are done! If you want to set it up yourself instead, you will first have to set up the ProgressBar submodule (the `setup` script takes care of this for you):
-```sh
-cd ProgressBar
-git submodule init
-git submodule update
-cd ..
-```
-Then, there are a number of ways you can automate the webhook, but the simplest is to just use `cron`. You have two options for adding a `cron` job:
-   - You can configure any custom timing you like with `sudo crontab -e`, which requires you to read the manual a little bit...
-   - ...or if you just want the webhook to be called hourly, daily, weekly, or monthly (etc), if your system is running a new enough version of `cron`, you can just symbolically link your script into `/etc/cron.daily/` or `/etc/cron.hourly/`, etc, if they are present on your system:
+* **If you used the `setup` script, move on to step 5.** If you want to set it up yourself instead, you will first have to set up the ProgressBar submodule:
+
+   ```sh
+   cd ProgressBar
+   git submodule init
+   git submodule update
+   cd ..
+   ```
+
+   Then, there are a number of ways you can automate the webhook, but the simplest is to just use `cron`. You have two options for adding a `cron` job:
+
+   * You can configure any custom timing you like with `sudo crontab -e`, which requires you to read the manual a little bit...
+   
+   * ...or if you just want the webhook to be called hourly, daily, weekly, or monthly (etc), if your system is running a new enough version of `cron`, you can just symbolically link your script into `/etc/cron.daily/` or `/etc/cron.hourly/`, etc, if they are present on your system:
 
    ```sh
    sudo ln -s /path/to/discord-disk-usage-report/disk-usage-report /etc/cron.hourly/
@@ -35,7 +39,7 @@ Then, there are a number of ways you can automate the webhook, but the simplest 
 
    This is what my `setup` script does. This will schedule an hourly disk usage report to be posted to your Discord channel! 🎉
 
-5. You can test it with `sudo su` followed by `run-parts /etc/cron.hourly`, but beware that that will run EVERYTHING in cron.hourly. Note also that simply calling it with `sudo` will not change to the root user like cron does, so it's not a true test (just in case). Alternatively, you can just wait an hour/day.
+5. You can test it with `sudo su` followed by `run-parts /etc/cron.hourly`, but beware that that will run EVERYTHING in `cron.hourly`. Note also that simply calling it with `sudo run-parts` will not change to the root user like cron does, so it's not a true test (just in case). Alternatively, you can just wait an hour/day for cron to test it for you.
 
 6. Optionally, you can edit the `TZ=` portion of the `disk-usage-report` script to change the timezone of the `timestamp` variable, or edit the area between the two `EOM`s to change the exact message being posted. Have fun, and let me know if you do anything cool with it!
 
