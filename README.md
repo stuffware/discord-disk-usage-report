@@ -28,10 +28,12 @@ When configured as described below, this script will regularly post messages to 
 
 5. You can test it with `sudo su` followed by `run-parts /etc/cron.daily`, but beware that that will run EVERYTHING in cron.daily. Note also that simply calling it with `sudo` will not change to the root user like cron does, so it's not a true test (just in case). Alternatively, you can just wait a day.
 
-## About the `send-message` script
+6. Optionally, you can edit the `TZ=` portion of the script to change the timezone of the `timestamp` variable, or edit the area between the two `EOM`s to change the exact message being posted. Have fun, and let me know if you do anything cool with it!
 
-Note: This repo is a fork of my [mturley/curl-discord-cronjob](https://github.com/mturley/curl-discord-cronjob) repo, with the `disk-usage-report` script replacing the `example` script found there. See the README over there for more details on how the `send-message` script works.
-
-## Next Steps
+## Next Steps for this repo
 
 I would really like to make this script not repeat itself, if the disk usage hasn't changed in the last hour. So there isn't a bunch of activity in that discord channel when things are not being downloaded / moved around.
+
+## About the `send-message` script
+
+Note: This repo is a fork of my [mturley/curl-discord-cronjob(https://github.com/mturley/curl-discord-cronjob) repo, with the `disk-usage-report` script replacing the `example` script found there. See the README over there for more details on how the `send-message` script works.
