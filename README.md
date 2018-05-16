@@ -1,6 +1,9 @@
 # discord-disk-usage-report
 
+Pretty disk usage reports, posted by cron to a Discord channel via webhook (curl).
+
 When configured as described below, this script will regularly post messages to Discord that look like the following:
+
 ![screenshot](https://raw.githubusercontent.com/mturley/curl-discord-cronjob/master/screenshot2.png)
 
 ## Dependencies
