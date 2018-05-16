@@ -23,12 +23,12 @@ gbusedf=`printf "%'.3f\n" $gbused`
 gbfreef=`printf "%'.3f\n" $gbfree`
 percentused=`percentage $kbused $kbfree`
 percentfree=`percentage $kbfree $kbused`
-timestamp="${TZ=America/New_York date +"%r"} EST"
+timestamp=`TZ=America/New_York date +"%r"`
 
 # Make it into something readable
 read -r -d '' message << EOM
 `ProgressBar $gbusedi $gbtotali "$gbusedf GB Used"```
-$gbfreef GB Remaining [\`$timestamp\`]
+$gbfreef GB Remaining [\`$timestamp EST\`]
 EOM
 
 if [ $DEBUGMODE -eq 1 ]; then
