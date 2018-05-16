@@ -21,8 +21,6 @@ gbtotali=`printf "%.f\n" $gbtotal`
 gbusedi=`printf "%.f\n" $gbused`
 gbusedf=`printf "%'.3f\n" $gbused`
 gbfreef=`printf "%'.3f\n" $gbfree`
-percentused=`percentage $kbused $kbfree`
-percentfree=`percentage $kbfree $kbused`
 timestamp=`TZ=America/New_York date +"%r"`
 
 # Make it into something readable
