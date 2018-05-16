@@ -3,7 +3,7 @@
 SCRIPT=`realpath $0`; DIRNAME=`dirname $SCRIPT`
 WD=`pwd`
 
-cd $SCRIPT/ProgressBar
+cd $DIRNAME/ProgressBar
 git submodule init
 git submodule update
 cd $WD
