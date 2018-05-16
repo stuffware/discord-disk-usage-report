@@ -16,19 +16,21 @@ When configured as described below, this script will regularly post messages to 
 1. Clone this repo on a server somewhere.
 2. Edit the top of the `disk-usage-report` script so the `webhook_url` variable contains your real Discord Webhook URL.
 3. Give the script a test run! You can just type `./disk-usage-report` at the command line.
-4. If your message showed up in Discord, you're almost done. To make the script run automatically, there are a number of ways, but the simplest is to just use `cron`. You have two options for adding a `cron` job:
-   * You can configure any custom timing you like with `sudo crontab -e`, which requires you to read the manual a little bit...
-   * ...or if you just want the webhook to be called hourly, daily, weekly, or monthly (etc), if your system is running a new enough version of `cron`, you can just symbolically link your script into `/etc/cron.daily/` or `/etc/cron.hourly/`, etc, if they are present on your system:
+4. If your message showed up in Discord, you're almost done. I have written a quick `setup` script to set up cron for hourly disk usage reports, using `cron.hourly`. You can use it just by running `./setup` any time (before or after you make changes to the script, because it is a symbolic link, not a file copy.
+
+* If you want to set it up yourself instead, there are a number of ways, but the simplest is to just use `cron`. You have two options for adding a `cron` job:
+   - You can configure any custom timing you like with `sudo crontab -e`, which requires you to read the manual a little bit...
+   - ...or if you just want the webhook to be called hourly, daily, weekly, or monthly (etc), if your system is running a new enough version of `cron`, you can just symbolically link your script into `/etc/cron.daily/` or `/etc/cron.hourly/`, etc, if they are present on your system:
 
    ```sh
-   sudo ln -s /path/to/discord-disk-usage-report/disk-usage-report /etc/cron.daily/
+   sudo ln -s /path/to/discord-disk-usage-report/disk-usage-report /etc/cron.hourly/
    ```
 
-   This will schedule a daily disk usage report to be posted to your Discord channel! 🎉
+   This is what my `setup` script does. This will schedule an hourly disk usage report to be posted to your Discord channel! 🎉
 
-5. You can test it with `sudo su` followed by `run-parts /etc/cron.daily`, but beware that that will run EVERYTHING in cron.daily. Note also that simply calling it with `sudo` will not change to the root user like cron does, so it's not a true test (just in case). Alternatively, you can just wait a day.
+5. You can test it with `sudo su` followed by `run-parts /etc/cron.hourly`, but beware that that will run EVERYTHING in cron.hourly. Note also that simply calling it with `sudo` will not change to the root user like cron does, so it's not a true test (just in case). Alternatively, you can just wait an hour/day.
 
-6. Optionally, you can edit the `TZ=` portion of the script to change the timezone of the `timestamp` variable, or edit the area between the two `EOM`s to change the exact message being posted. Have fun, and let me know if you do anything cool with it!
+6. Optionally, you can edit the `TZ=` portion of the `disk-usage-report` script to change the timezone of the `timestamp` variable, or edit the area between the two `EOM`s to change the exact message being posted. Have fun, and let me know if you do anything cool with it!
 
 ## Next Steps for this repo
 
