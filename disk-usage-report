@@ -15,7 +15,7 @@ percentage() {
 }
 
 # Do some free space calculations with df and awk
-dfk=`df -k ~`
+dfk=`df -k /home`
 kbused=`echo "$dfk" | awk 'NR == 2 { print $3 }'`
 kbfree=`echo "$dfk" | awk 'NR == 2 { print $4 }'`
 gbtotal=`kb2gb $kbused $kbfree`
