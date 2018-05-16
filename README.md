@@ -1,7 +1,7 @@
 # discord-disk-usage-report
 
 When configured as described below, this script will regularly post messages to Discord that look like the following:
-![screenshot](https://raw.githubusercontent.com/mturley/curl-discord-cronjob/master/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/mturley/curl-discord-cronjob/master/screenshot2.png)
 
 ## Dependencies
 
