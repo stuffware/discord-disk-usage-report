@@ -38,4 +38,4 @@ I would really like to make this script not repeat itself, if the disk usage has
 
 ## About the `send-message` script
 
-Note: This repo is a fork of my [mturley/curl-discord-cronjob(https://github.com/mturley/curl-discord-cronjob) repo, with the `disk-usage-report` script replacing the `example` script found there. See the README over there for more details on how the `send-message` script works.
+Note: This repo is a fork of my [mturley/curl-discord-cronjob](https://github.com/mturley/curl-discord-cronjob) repo, with the `disk-usage-report` script replacing the `example` script found there. See the README over there for more details on how the `send-message` script works.
