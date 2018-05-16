@@ -34,6 +34,6 @@ if [ $DEBUGMODE -eq 1 ]; then
   echo "Not sending message:"
   echo "$message"
 else
-  $DIRNAME/send-message "Disk Usage Report" "$message"
+  $DIRNAME/send-message "$webhook_url" "Disk Usage Report" "$message"
 fi
 
