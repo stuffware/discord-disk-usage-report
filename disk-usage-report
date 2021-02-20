@@ -26,8 +26,10 @@ timestamp=`TZ=America/New_York date +"%r"`
 
 # Make it into something readable with a fancy progress bar
 read -r -d '' message << EOM
-\``ProgressBar $gbusedi $gbtotali "$gbusedf GB Used"`\`
-\`$gbfreef GB Remaining [$timestamp EST]\`
+\`\`\`
+`ProgressBar $gbusedi $gbtotali "$gbusedf GB Used"`
+$gbfreef GB Remaining [$timestamp EST]
+\`\`\`
 EOM
 
 if [ $DEBUGMODE -eq 1 ]; then
